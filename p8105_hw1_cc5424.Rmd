@@ -1,0 +1,28 @@
+---
+title: "p8105_hw1_cc5424"
+author: "ChuqiChen"
+date: "2025-09-20"
+output: github_document
+---
+
+```{r}
+library(moderndive)
+
+library(ggplot2)
+
+data("early_january_weather")
+
+early_january_weather
+```
+
+This dataset has `r nrow(early_january_weather)` rows and `r ncol(early_january_weather)` columns.
+It includes variables including `r names(early_january_weather)`.
+The mean temperature in the dataset is `r mean(early_january_weather$temp)`.
+
+```{r}
+ggplot(early_january_weather, aes(x = time_hour, y = temp, color = humid))+ 
+  geom_point()
+
+ggsave("scatterplot.pdf")
+```
+
