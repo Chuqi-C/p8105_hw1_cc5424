@@ -47,6 +47,46 @@ A relationship exists between humidity and temperature, with lower temperatures 
 problem 2
 
 ```{r}
-sample = rnorm(10)
+library(tidyverse)
+
+sample1 = rnorm(10)
+logical_vec = sample1 > 0
+char_vec = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
+factor_vec = factor(c("low", "medium", "high", "low", "medium", "high", "low", "medium", "high", "low"))
+
+df = data.frame(sample1, logical_vec, char_vec, factor_vec)
+
+mean_sample1 = mean(pull(df, sample1))
+mean_sample1
+
+mean_logical = mean(pull(df, logical_vec))
+mean_logical
+
+mean_char = mean(pull(df, char_vec))
+mean_char
+
+mean_factor = mean(pull(df, factor_vec))
+mean_factor
 ```
 
+```{r eval = FALSE}
+mean_numeric_logical = mean(as.numeric(logical_vec))
+mean_numeric_logical
+
+mean_numeric_char = mean(as.numeric(char_vec))
+mean_numeric_char
+
+mean_numeric_factor = mean(as.numeric(factor_vec))
+mean_numeric_factor
+```
+
+What happens and why?
+
+Logical to Numeric: R can change TRUE to 1 and FALSE to 0. I can take the mean of a logical vector because they are numbers now.
+
+Character to Numeric: Since the characters are letters, R cannot convert them to numbers directly. So I still can not take the mean of a character vector.
+
+Factor to Numeric: I can take the mean of factors because factors contains 3 different levels and R can give them different numbers. But the original factors represent categories, not numeric values, so the mean might not be meaningful.
+
+Does this help explain what happens when you try to take the mean?
+Yes
