@@ -56,21 +56,17 @@ factor_vec = factor(c("low", "medium", "high", "low", "medium", "high", "low", "
 
 df = data.frame(sample1, logical_vec, char_vec, factor_vec)
 
-mean_sample1 = mean(pull(df, sample1))
-mean_sample1 
-#work
+mean_sample1 = mean(pull(df, sample1)) #work
+mean_sample1
 
-mean_logical = mean(pull(df, logical_vec))
-mean_logical 
-#work
+mean_logical = mean(pull(df, logical_vec)) #work
+mean_logical
 
-mean_char = mean(pull(df, char_vec))
-mean_char 
-#fail
+mean_char = mean(pull(df, char_vec)) #fail
+mean_char
 
-mean_factor = mean(pull(df, factor_vec))
-mean_factor 
-#fial
+mean_factor = mean(pull(df, factor_vec)) #fial
+mean_factor
 ```
 
 Taking the mean works for numeric and logical vectors, but fails for character and factor vectors.
