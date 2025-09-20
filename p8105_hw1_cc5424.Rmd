@@ -4,6 +4,7 @@ author: "ChuqiChen"
 date: "2025-09-20"
 output: github_document
 ---
+problem 1
 
 ```{r}
 library(moderndive)
@@ -16,13 +17,36 @@ early_january_weather
 ```
 
 This dataset has `r nrow(early_january_weather)` rows and `r ncol(early_january_weather)` columns.
+
 It includes variables including `r names(early_january_weather)`.
-The mean temperature in the dataset is `r mean(early_january_weather$temp)`.
+There are important variables such as time_hour, temperature (°C), humidity(%), wind_speed, wind_gust.
+It includes hourly data from January 1, 2023, to January 15, 2023.
+
+The mean temperature in the dataset is `r round(mean(early_january_weather$temp), 2)`°C.
 
 ```{r}
-ggplot(early_january_weather, aes(x = time_hour, y = temp, color = humid))+ 
-  geom_point()
+ggplot(early_january_weather, aes(y = temp, x = time_hour, color = humid))+
+  geom_point()+
+  labs(
+    title = "Scatterplot of Temperature(y) vs Time(x)",
+    y = "Temperature (°C)",
+    x = "Time(hour)",
+    color = "Humidity (%)"
+    )
 
 ggsave("scatterplot.pdf")
+```
+
+The x-axis represents time in hours. The y-axis represents temperature. The color of each data point corresponds to its humidity value.
+
+Temperature generally fluctuates upward over time. It peaks during specific periods (near noon) and declines during evening hours.
+A relationship exists between humidity and temperature, with lower temperatures occurring at higher humidity levels.
+
+
+
+problem 2
+
+```{r}
+sample = rnorm(10)
 ```
 
